@@ -277,7 +277,7 @@ Chat about images using LLaVA without the need of Gradio interface. It also supp
 ```Shell
 python -m llava.serve.cli \
     --model-path liuhaotian/llava-v1.5-7b \
-    --image-file "https://llava-vl.github.io/static/images/view.jpg" \
+    --image-file /home/chj/LLaVA/images/llava_logo.png \
     --load-4bit
 ```
 

@@ -186,7 +186,8 @@ def tokenizer_image_token(prompt, tokenizer, image_token_index=IMAGE_TOKEN_INDEX
     prompt_chunks = [tokenizer(chunk).input_ids for chunk in prompt.split('<image>')]
 
     def insert_separator(X, sep):
-        return [ele for sublist in zip(X, [sep]*len(X)) for ele in sublist][:-1]
+        temp = [ele for sublist in zip(X, [sep]*len(X)) for ele in sublist][:-1]
+        return temp
 
     input_ids = []
     offset = 0
@@ -194,7 +195,8 @@ def tokenizer_image_token(prompt, tokenizer, image_token_index=IMAGE_TOKEN_INDEX
         offset = 1
         input_ids.append(prompt_chunks[0][0])
 
-    for x in insert_separator(prompt_chunks, [image_token_index] * (offset + 1)):
+    temp1 = insert_separator(prompt_chunks, [image_token_index] * (offset + 1))
+    for x in temp1:
         input_ids.extend(x[offset:])
 
     if return_tensors is not None:
